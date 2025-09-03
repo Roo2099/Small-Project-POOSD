@@ -13,9 +13,9 @@ if ($first === "" || $last === "" || $login === "" || $pass === "") {
 $conn = new mysqli("localhost","barryb","buzzbuzz35!","contactmgr");
 if ($conn->connect_error) { returnJson(["results"=>null,"error"=>$conn->connect_error]); exit; }
 
-$hash = password_hash($pass, PASSWORD_DEFAULT);
 $stmt = $conn->prepare("INSERT INTO Users(FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
-$stmt->bind_param("ssss", $first, $last, $login, $hash);
+$stmt->bind_param("ssss", $first, $last, $login, $pass);
+
 
 if (!$stmt->execute()) {
   // likely duplicate login
