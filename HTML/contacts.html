@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Contacts</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* You can move these to styles.css if you prefer */
+    #contactScroll {
+      max-height: 480px;           /* adjust to taste */
+      overflow-y: auto;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 16px;
+      backdrop-filter: blur(2px);
+      background: rgba(0,0,0,0.15); /* blends with your theme */
+    }
+    #show-more-container {
+      text-align: center;
+      margin-top: 12px;
+    }
+    #showMoreBtn {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">My Contacts</h1>
+
+    <!-- Search bar -->
+    <div id="search-container">
+      <input type="text" id="searchText" placeholder="Search contacts...">
+      <div class="autofill-list"></div>
+    </div>
+
+    <!-- Scrollable contact list -->
+    <div id="contactScroll">
+      <div class="contact-grid"></div>
+
+      <!-- Show More / Show Less button (initially hidden) -->
+      <div id="show-more-container">
+        <button id="showMoreBtn" class="buttons" style="display:none;">Show More</button>
+      </div>
+    </div>
+
+    <!-- Add Contact form (stays fixed while list scrolls) -->
+    <input type="text" id="firstNameText" placeholder="First Name">
+    <input type="text" id="lastNameText" placeholder="Last Name">
+    <input type="text" id="phoneText" placeholder="Phone">
+    <input type="text" id="emailText" placeholder="Email">
+    <button type="button" id="addContactButton" class="buttons" onclick="addContact();">Add Contact</button>
+    <span id="contactAddResult"></span>
+
+    <!-- Logout -->
+    <button id="logoutButton" onclick="doLogout()">Logout</button>
+  </div>
+
+  <script src="js/code.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      readCookie();
+      setupSearch();
+      fetchContacts("", true); // initial load
+    });
+  </script>
+</body>
+</html>

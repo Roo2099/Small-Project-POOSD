@@ -471,15 +471,17 @@ function openEditModal(contactId, currFn="", currLn="", currPh="", currEm="") {
     const ln = document.getElementById("editLn").value.trim();
     const ph = document.getElementById("editPh").value.trim();
     const em = document.getElementById("editEm").value.trim();
+    
     // validation: optional fields must be valid when provided
-    if (em && !/^([^\s@]+)@([^\s@]+)\.[^\s@]+$/.test(em)) {
+    if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
       alert("Please enter a valid email.");
       return;
     }
-    if (ph && !( /^\d{10}$/.test(ph) || /^\d+$/.test(ph) )) {
+    if (ph && !(/^\d{10}$/.test(ph) || /^\d+$/.test(ph))) {
       alert("Phone must contain digits only (prefer 10 digits).");
       return;
     }
+    
     updateContact(contactId, fn || currFn, ln || currLn, ph || currPh, em || currEm);
     closeEditModal();
   }

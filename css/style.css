@@ -1,0 +1,323 @@
+/* === UCF Accessible Theme Tokens === */
+:root{
+  --bg: #0b0b0b;              /* near-black background */
+  --bg-accent: #121212;
+  --card: rgba(255,214,98,0.06); /* subtle gold tint for cards */
+  --border: rgba(255,214,98,0.16);
+  --text: #f3f4f6;            /* light text for contrast */
+  --muted: #d1b16f;           /* muted gold for helper text */
+  --primary: #ffd662;         /* UCF gold */
+  --primary-600: #e6c452;     /* darker gold for gradient end */
+  --danger: #ef4444;          /* red for errors */
+  --radius: 18px;
+  --shadow: 0 12px 32px rgba(0,0,0,.25);
+  --space: clamp(12px, 1.5vw, 18px);
+}
+
+/* === Page foundation === */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin:0;
+  font-family: 'Ubuntu', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);      /* fallback while image loads */
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* === Background image with gold overlay === */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("../images/background.png"); /* adjust if needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.55) saturate(1.1);
+  z-index: -2;
+}
+body::after{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(1100px 600px at 8% 0%, rgba(255,214,98,0.12) 0%, rgba(0,0,0,0.55) 70%),
+    linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+  z-index: -1;
+}
+
+/* Layout container */
+.container{
+  max-width: 860px;
+  margin: 48px auto 72px;
+  padding: 0 var(--space);
+}
+
+/* Header */
+#title{
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.15;
+  margin: 0 0 22px;
+  text-align: center;
+  letter-spacing: .4px;
+  color: #fff;
+  background: linear-gradient(90deg, #ffffff, #ffd662, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card panels */
+#loginDiv, #loggedInDiv, #accessUIDiv{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(18px, 2.4vw, 28px);
+  margin: 20px auto;
+  width: min(760px, 100%);
+  backdrop-filter: blur(6px);
+  animation: fade-in .5s ease both;
+}
+
+/* Titles & helper text */
+#inner-title, #loginResult, #colorAddResult, #colorSearchResult,
+#contactAddResult, #contactSearchResult{
+  display:block;
+  text-align:center;
+  margin: 6px 0 10px;
+  font-size: .95rem;
+  color: #e8d8a4; /* slightly brighter gold for readability */
+}
+#loginResult, #contactAddResult, #contactSearchResult { color: var(--danger); }
+
+/* Username display */
+#userName{
+  display:block;
+  text-align:center;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Inputs */
+input[type="text"], input[type="password"]{
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  padding: 14px 16px;
+  margin: 8px 0;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .04s;
+}
+input::placeholder{ color: #b6a06b; }
+input:focus{
+  border-color: #ffd662;
+  box-shadow: 0 0 0 4px rgba(255,214,98,.22);
+}
+
+/* Buttons */
+.buttons, button{
+  appearance: none;
+  display:block;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 10px 0;
+  color: #111827; /* dark text on gold for contrast */
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  transition: transform .06s ease, filter .15s ease, box-shadow .15s ease;
+  box-shadow: 0 8px 18px rgba(255,214,98,.25);
+}
+.buttons:hover, button:hover{ filter: brightness(1.05); }
+.buttons:active, button:active{ transform: translateY(1px); }
+.buttons:focus-visible, button:focus-visible{
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255,214,98,.45);
+}
+
+/* Secondary button (e.g., Register / Logout) */
+#logoutButton{
+  max-width: 220px;
+  margin-inline: auto;
+  background: linear-gradient(180deg, #e5e7eb, #cbd5e1);
+  color: #0f172a;
+  box-shadow: 0 8px 18px rgba(203,213,225,.25);
+}
+
+/* Selects */
+select{
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 8px 0;
+}
+
+/* Contact list readability */
+#contactList{
+  margin-top: 10px;
+  line-height: 1.5;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+
+/* Utility */
+.center{ text-align:center; }
+
+/* Simple fade-in */
+@keyframes fade-in{
+  from{ opacity:0; transform: translateY(6px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* Responsiveness */
+@media (min-width: 720px){
+  #accessUIDiv{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  #searchText, #searchContactButton, #contactSearchResult, #contactList{
+    grid-column: 1 / -1;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+}
+
+/* === Contact List Page === */
+
+/* Page container */
+.list-container {
+  max-width: 1100px;
+  margin: 48px auto;
+  padding: 0 var(--space);
+}
+
+/* Search bar wrapper */
+.search-bar {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.search-bar input[type="text"] {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.search-bar input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(255,214,98,.22);
+}
+
+/* Autofill dropdown */
+.autofill-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-accent);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-top: 6px;
+  box-shadow: var(--shadow);
+  z-index: 50;
+}
+
+.autofill-list div {
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+
+.autofill-list div:hover {
+  background: rgba(255,214,98,0.08);
+}
+
+/* Contact grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* Contact card */
+.contact-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  backdrop-filter: blur(4px);
+  box-shadow: var(--shadow);
+  transition: transform .12s ease, box-shadow .15s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(0,0,0,.3);
+}
+
+/* Contact card content */
+.contact-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--primary);
+}
+
+.contact-phone {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.contact-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.contact-actions button {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+/* Delete button */
+.contact-actions .delete-btn {
+  background: var(--danger);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(239,68,68,.25);
+}
+
+.contact-actions .delete-btn:hover {
+  filter: brightness(1.1);
+}
+
+/* Update button */
+.contact-actions .update-btn {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  color: #111827;
+  box-shadow: 0 4px 10px rgba(255,214,98,.25);
+}
