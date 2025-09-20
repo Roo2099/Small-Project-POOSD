@@ -1,0 +1,540 @@
+/* === UCF Accessible Theme Tokens === */
+:root {
+  --bg: #0b0b0b;
+  /* near-black background */
+  --bg-accent: #121212;
+  --card: rgba(255, 214, 98, 0.06);
+  /* subtle gold tint for cards */
+  --border: rgba(255, 214, 98, 0.16);
+  --text: #f3f4f6;
+  /* light text for contrast */
+  --muted: #d1b16f;
+  /* muted gold for helper text */
+  --primary: #ffd662;
+  /* UCF gold */
+  --primary-600: #e6c452;
+  /* darker gold for gradient end */
+  --danger: #ef4444;
+  /* red for errors */
+  --radius: 18px;
+  --shadow: 0 12px 32px rgba(0, 0, 0, .25);
+  --space: clamp(12px, 1.5vw, 18px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+
+
+body {
+  margin: 0;
+  font-family: 'Ubuntu', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("../images/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.55) saturate(1.1);
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(1100px 600px at 8% 0%, rgba(255, 214, 98, 0.12) 0%, rgba(0, 0, 0, 0.55) 70%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55));
+  z-index: -1;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0px auto 72px;
+  padding: 0 var(--space);
+}
+
+#title {
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.15;
+  margin: 0 0 10px;
+  text-align: center;
+  letter-spacing: .4px;
+  color: #fff;
+  background: linear-gradient(90deg, #ffffff, #ffd662, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+#loginDiv,
+#loggedInDiv,
+#accessUIDiv {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(18px, 2.4vw, 28px);
+  margin: 20px auto;
+  width: min(760px, 100%);
+  backdrop-filter: blur(6px);
+  animation: fade-in .5s ease both;
+}
+
+#registerResult,
+#inner-title,
+#loginResult,
+#colorAddResult,
+#colorSearchResult,
+#contactAddResult,
+#contactSearchResult {
+  display: block;
+  text-align: center;
+  margin: 6px 0 10px;
+  font-size: .95rem;
+  color: #e8d8a4;
+}
+
+#registerResult,
+#loginResult,
+#contactAddResult,
+#contactSearchResult {
+  color: var(--danger);
+}
+
+#userName {
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 14px 16px;
+  margin: 8px 0;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .04s;
+}
+
+input::placeholder {
+  color: #b6a06b;
+}
+
+input:focus {
+  border-color: #ffd662;
+  box-shadow: 0 0 0 4px rgba(255, 214, 98, .22);
+}
+
+.buttons,
+button {
+  appearance: none;
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 10px 0;
+  color: #111827;
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  transition: transform .06s ease, filter .15s ease, box-shadow .15s ease;
+  box-shadow: 0 8px 18px rgba(255, 214, 98, .25);
+}
+
+.buttons:hover,
+button:hover {
+  filter: brightness(1.05);
+}
+
+.buttons:active,
+button:active {
+  transform: translateY(1px);
+}
+
+.buttons:focus-visible,
+button:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 214, 98, .45);
+}
+
+
+
+select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 8px 0;
+}
+
+#contactList {
+  margin-top: 10px;
+  line-height: 1.5;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+
+.center {
+  text-align: center;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 720px) {
+  #accessUIDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  #searchText,
+  #searchContactButton,
+  #contactSearchResult,
+  #contactList {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.list-container {
+  max-width: 1100px;
+  margin: 48px auto;
+  padding: 0 var(--space);
+}
+
+.search-bar {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.search-bar input[type="text"] {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.search-bar input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(255, 214, 98, .22);
+}
+
+.autofill-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-accent);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-top: 6px;
+  box-shadow: var(--shadow);
+  z-index: 50;
+}
+
+.autofill-list div {
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+
+.autofill-list div:hover {
+  background: rgba(255, 214, 98, 0.08);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.contact-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  backdrop-filter: blur(4px);
+  box-shadow: var(--shadow);
+  transition: transform .12s ease, box-shadow .15s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .3);
+}
+
+.contact-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--primary);
+}
+
+.contact-phone {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.contact-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.contact-actions button {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.contact-actions .delete-btn {
+  background: rgba(255, 255, 255, 0);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(27, 27, 27, 0.25);
+}
+
+.contact-actions .delete-btn:hover {
+  filter: brightness(1.1);
+}
+
+.contact-actions .update-btn {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  color: #111827;
+  box-shadow: 0 4px 10px rgba(255, 214, 98, .25);
+}
+
+#contactScroll {
+  max-height: 480px;
+  overflow-y: auto;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 16px;
+  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.15);
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) rgba(0, 0, 0, 0.2);
+}
+
+#show-more-container {
+  text-align: center;
+  margin-top: 12px;
+}
+
+#showMoreBtn {
+  width: 100%;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 14px;
+  border: 1px solid var(--border); 
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);  
+  color: var(--text);  
+}
+#logoutButton {
+  background: linear-gradient(180deg, #e5e7eb, #cbd5e1);
+  color: #0f172a;
+  box-shadow: 0 8px 18px rgba(203, 213, 225, .25);
+  z-index: 100; /* Ensure it stays on top of other elements */
+}
+.input-container input[type="text"] {
+  color: var(--text) !important;
+  -webkit-text-security: none !important;
+  text-security: none !important;
+  font-size: 14px !important;
+  background: rgba(255, 255, 255, 0.04) !important; /* match your theme */
+}
+
+.input-container label {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  color: #777;
+  font-size: 14px;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+.input-container input:focus+label,
+.input-container input:not(:placeholder-shown)+label {
+  top: -8px;
+  left: 8px;
+  font-size: 12px;
+  color: #ffffff;
+  background: rgba(255, 214, 98, .25);
+  padding: 0 4px;
+}
+.input-container button[type="button"] {
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  z-index: 5;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.83 9L15 12.16V12a3 3 0 0 0-3-3h-.17m-4.3.8l1.55 1.55c-.05.21-.08.42-.08.65a3 3 0 0 0 3 3c.22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53a5 5 0 0 1-5-5c0-.79.2-1.53.53-2.2M2 4.27l2.28 2.28l.45.45C3.08 8.3 1.78 10 1 12c1.73 4.39 6 7.5 11 7.5c1.55 0 3.03-.3 4.38-.84l.43.42L19.73 22 21 20.73 3.27 3 2 4.27z' fill='%23777'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.input-container button[type="button"].show-password {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z' fill='%23777'/%3E%3C/svg%3E");
+}
+
+.input-container button[type="button"]:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.83 9L15 12.16V12a3 3 0 0 0-3-3h-.17m-4.3.8l1.55 1.55c-.05.21-.08.42-.08.65a3 3 0 0 0 3 3c.22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53a5 5 0 0 1-5-5c0-.79.2-1.53.53-2.2M2 4.27l2.28 2.28l.45.45C3.08 8.3 1.78 10 1 12c1.73 4.39 6 7.5 11 7.5c1.55 0 3.03-.3 4.38-.84l.43.42L19.73 22 21 20.73 3.27 3 2 4.27z' fill='%23555'/%3E%3C/svg%3E");
+}
+
+.input-container button[type="button"].show-password:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z' fill='%23555'/%3E%3C/svg%3E");
+}
+
+.warning-icon {
+  display: none;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.show-warning .warning-icon {
+  display: block;
+}
+
+.input-container.error input {
+    border-color: #ff4444; 
+}
+/* Absolute kill for the sentinel line */
+.scroll-sentinel {
+  display: none !important;
+  position: absolute !important;
+  top: -9999px !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  background: none !important;
+  border: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Hide empty autofill dropdown so no stray line appears */
+.autofill-list:empty {
+  display: none;
+}
+
+/* === Accessibility Contrast Fixes === */
+.input-container label {
+  color: #eaeaea;                 /* brighter label text */
+}
+
+input::placeholder {
+  color: #dcdcdc;                 /* brighter placeholder */
+}
+
+.input-container input {
+  color: var(--text);
+  opacity: 1;
+  border-color: rgba(255, 214, 98, 0.4); /* higher-contrast border */
+}
+
+.input-container input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(255, 214, 98, 0.4);
+}
+
+#loginDiv {
+  color: var(--text);             /* ensure text pops on translucent bg */
+}
+/* === Delete Button High-Contrast Style === */
+.contact-actions .delete-btn {
+  background: #b00020;      /* high-contrast red */
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contact-actions .delete-btn:hover {
+  background: #d32f2f;      /* slightly brighter on hover */
+}
+
+.contact-actions .delete-btn:focus-visible {
+  outline: 3px solid #fff;  /* clear keyboard focus ring */
+  outline-offset: 2px;
+}
+
+/* === Center & fix descender clipping for My Contacts heading === */
+#title {
+  text-align: center;          /* center the text horizontally */
+  display: block;              /* ensures the text-align works */
+  line-height: 1.3;            /* extra space for the descender */
+  padding-bottom: 6px;         /* breathing room below */
+  overflow: visible;           /* prevent any clipping */
+  background-clip: text;       /* standard fallback */
+}
+
