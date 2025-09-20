@@ -1,23 +1,47 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<title>Contact Manager</title>
+	<meta name="Login">
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	<meta name="Login" content="Manage and organize your personal contacts with My Contacts. Add, search, and edit phone numbers, emails, and names easily.">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
+
 <body>
 
-<h1 id="title">Contact Manager</h1>
+	<h1 id="title">Contact Manager</h1>
 
-<div id="loginDiv">
-	<span id="inner-title">PLEASE LOG IN</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Log In </button>
-	<button type="button" id="loginButton" class="buttons" onclick="window.location.href='register.html'"> Register </button>
-	<span id="loginResult"></span>
-</div>
+	<div id="loginDiv">
+		<span id="inner-title">PLEASE LOG IN</span>
+		<div class="input-container" id="logincontainer">
+			<input type="text" id="loginName" placeholder=" " required>
+			<label for="loginName">Username</label>
+			 <div class="warning-icon"></div>
+		</div>
+
+		<div class="input-container password-container" id="pwordcontainer">
+			<input type="password" id="password" placeholder=" " required>
+			<label for="password">Password</label>
+			<div class="warning-icon"></div>
+			<button type="button" class="toggle-password" id="togglePassword">
+				<svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+					<path
+						d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z" />
+				</svg>
+			</button>
+		</div>
+		<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Log In </button>
+		<button type="button" id="loginButton" class="buttons" onclick="window.location.href='register.html'"> Register
+		</button>
+		<span id="loginResult"></span>
+
+	</div>
+
+	
 
 </body>
+
 </html>

@@ -1,33 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Contacts</title>
+  <meta name="description" content="Manage and organize your personal contacts with My Contacts. Add, search, and edit phone numbers, emails, and names easily.">
   <link rel="stylesheet" href="css/styles.css" />
-  <style>
-    /* You can move these to styles.css if you prefer */
-    #contactScroll {
-      max-height: 480px;           /* adjust to taste */
-      overflow-y: auto;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 14px;
-      margin-top: 16px;
-      backdrop-filter: blur(2px);
-      background: rgba(0,0,0,0.15); /* blends with your theme */
-    }
-    #show-more-container {
-      text-align: center;
-      margin-top: 12px;
-    }
-    #showMoreBtn {
-      width: 100%;
-    }
-  </style>
+
 </head>
+
 <body>
+
   <div class="container">
+
     <h1 id="title">My Contacts</h1>
 
     <!-- Search bar -->
@@ -47,14 +33,31 @@
     </div>
 
     <!-- Add Contact form (stays fixed while list scrolls) -->
-    <input type="text" id="firstNameText" placeholder="First Name">
-    <input type="text" id="lastNameText" placeholder="Last Name">
-    <input type="text" id="phoneText" placeholder="Phone">
-    <input type="text" id="emailText" placeholder="Email">
-    <button type="button" id="addContactButton" class="buttons" onclick="addContact();">Add Contact</button>
-    <span id="contactAddResult"></span>
+    <div id="loginDiv">
+      <div class="input-container" id="firstname">
+        <input type="text" id="firstNameText" placeholder=" " required>
+        <label for="firstNameText">First Name</label>
+        <div class="warning-icon"></div>
+      </div>
+      <div class="input-container" id="lastname">
+        <input type="text" id="lastNameText" placeholder=" " required>
+        <label for="lastNameText">Last Name</label>
+        <div class="warning-icon"></div>
+      </div>
+      <div class="input-container" id="ph">
+        <input type="text" id="phoneText" placeholder=" " required>
+        <label for="phoneText">Phone Number</label>
+        <div class="warning-icon"></div>
+      </div>
+      <div class="input-container" id="email">
+        <input type="text" id="emailText" placeholder=" " required>
+        <label for="emailText">Email</label>
+        <div class="warning-icon"></div>
+      </div>
+      <button type="button" id="addContactButton" class="buttons" onclick="addContact();">Add Contact</button>
+      <span id="contactAddResult"></span>
 
-    <!-- Logout -->
+    </div>
     <button id="logoutButton" onclick="doLogout()">Logout</button>
   </div>
 
@@ -63,8 +66,9 @@
     document.addEventListener("DOMContentLoaded", function () {
       readCookie();
       setupSearch();
-      fetchContacts("", true); // initial load
+      fetchContacts("", true);
     });
   </script>
 </body>
+
 </html>
