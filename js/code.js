@@ -1,5 +1,6 @@
 /*******************************
- * Contact Manager – code.js (fixed)
+ * Created by: Riley Parkin, Kobi Corney, Christian Jones, and Terrence Freeman 
+ * Contact Manager – code.js
  * - Prevents duplicate/infinite tiles while scrolling
  * - Auto-refreshes tile grid after Add / Update / Delete
  * - Uses IntersectionObserver for robust infinite scroll
@@ -811,10 +812,13 @@ function updateContact(contactId, first, last, phone, email) {
 }
 
 function deleteContact(contactId) {
-  const status = document.getElementById("contactSearchResult");
+  // Use the same output span used by addContact
+  const out = document.getElementById("contactAddResult");
+  if (out) out.innerHTML = "";   // clear any previous add/delete message
+
   const id = parseInt(contactId);
   if (!id || isNaN(id)) {
-    if (status) status.innerHTML = "Missing contact id.";
+    if (out) out.innerHTML = "Missing contact id.";
     return;
   }
 
@@ -828,19 +832,22 @@ function deleteContact(contactId) {
   xhr.onreadystatechange = function () {
     if (this.readyState !== 4) return;
     if (this.status !== 200) {
-      if (status) status.innerHTML = "Delete failed (" + this.status + ").";
+      if (out) out.innerHTML = "Delete failed (" + this.status + ").";
       return;
     }
+
     let obj = {};
     try { obj = JSON.parse(xhr.responseText); } catch (_) { }
 
     if (obj.error && obj.error !== "") {
-      if (status) status.innerHTML = "Error: " + obj.error;
+      if (out) out.innerHTML = "Error: " + obj.error;
       return;
     }
 
-    if (status) status.innerHTML = "Contact deleted.";
-    // Refresh grid and pull from page 0 again to keep it clean
+    // ✅ Show deletion confirmation in the same place as add message
+    if (out) out.innerHTML = '<span style="color: #ff4d4d;">Contact has been deleted</span>';
+
+    // Refresh the grid so the removed contact disappears
     fetchContacts(lastQuery, true);
   };
   xhr.send(JSON.stringify(payload));
