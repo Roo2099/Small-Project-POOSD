@@ -1,3 +1,4 @@
+/* Created by: Riley Parkin, Kobi Corney, Christian Jones, and Terrence Freeman */
 /* === UCF Accessible Theme Tokens === */
 :root {
   --bg: #0b0b0b;
@@ -537,4 +538,5 @@ input::placeholder {
   overflow: visible;           /* prevent any clipping */
   background-clip: text;       /* standard fallback */
 }
+
 
