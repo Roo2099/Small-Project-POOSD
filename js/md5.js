@@ -1,4 +1,5 @@
 /*
+ * Created by: Riley Parkin, Kobi Corney, Christian Jones, and Terrence Freeman 
  * JavaScript MD5
  * https://github.com/blueimp/JavaScript-MD5
  *
@@ -399,4 +400,5 @@
   } else {
     $.md5 = md5
   }
+
 })(this)
