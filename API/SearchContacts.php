@@ -1,5 +1,5 @@
 <?php
-
+// Created by: Riley Parkin, Kobi Corney, Christian Jones, and Terrence Freeman
 	$inData = getRequestInfo();
 	
 	$searchResults = "";
@@ -67,4 +67,5 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
+
 ?>
