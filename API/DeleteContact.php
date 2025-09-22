@@ -1,5 +1,4 @@
 <?php
-// Created by: Riley Parkin, Kobi Corney, Christian Jones, and Terrence Freeman
 $in = getJson();
 $contactId = (int)($in["contactId"] ?? 0);
 $userId    = (int)($in["userId"]    ?? 0);
@@ -23,4 +22,3 @@ $stmt->close(); $conn->close();
 
 function getJson(){ return json_decode(file_get_contents('php://input'), true) ?? []; }
 function returnJson($obj){ header('Content-Type: application/json; charset=utf-8'); echo json_encode($obj); }
-

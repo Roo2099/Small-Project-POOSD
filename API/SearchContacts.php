@@ -1,5 +1,5 @@
 <?php
-// Created by: Riley Parkin, Kobi Corney, Christian Jones, and Terrence Freeman
+
 	$inData = getRequestInfo();
 	
 	$searchResults = "";
@@ -28,7 +28,8 @@
 			}
 			$searchCount++;
 			//$searchResults .= '"' . $row["FirstName"] . '"';
-			$searchResults .= '{"FirstName" : "'. $row["FirstName"] .'","LastName" : "'. $row["LastName"] . '" ,"Phone" : "'. $row["Phone"] . '" ,"Email" : "'. $row["Email"] . '"}';
+$searchResults .= '{"ID":'. $row["ID"] .',"FirstName":"'. $row["FirstName"] .'","LastName":"'. $row["LastName"] .'","Phone":"'. $row["Phone"] .'","Email":"'. $row["Email"] .'"}';
+
 		}
 		
 		if( $searchCount == 0 )
@@ -67,5 +68,4 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-
 ?>
